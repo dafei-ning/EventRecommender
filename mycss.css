@@ -1,0 +1,264 @@
+/*通配符选择器去掉所有padding 和 margin*/
+
+* {
+	padding : 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #434343;
+	color: #FFFFFF;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+	font-size: 0.9em;  /* em是相对单位 默认字体大小比如16px，0.9em就变成了 14.4 px */
+}
+
+ul {
+	list-style: none;
+}
+
+
+/*header*/
+
+.top-header {
+	background-color: #DF574B; /*不拉几红*/
+	height: 60px;
+	/*box-shadow的调制：https://www.cssmatic.com/box-shadow */
+	box-shadow: 10px 10px 31px -2px rgba(0,0,0,0.75);
+	postion:fixed;
+	top: 0;
+	z-index: 1;
+
+	/*flex-box的布局解释: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
+	/*划分三个区域，左面是标签，中间空，右边是登陆*/
+
+	display:flex;
+	align-items: center;
+
+
+}
+
+/*划分三个区域，左面是标签，中间空，右边是登陆*/
+.top-nav {
+	flex: 1;
+/*    flex: 1;
+         flex-grow: 1;
+         flex-shrink: 1;
+         flex-basis: 0%;*/
+}
+
+
+/*对于home contact above进行设定*/
+.top-nav a{
+	color: #FFFFFF;
+	font-weight: 500;
+	text-decoration: none;
+	margin-left: 20px;
+}
+
+.welcome-msg {
+	margin-right: 5px;
+	padding:5px;
+	border-right: 1px solid #FFFFFF;
+}
+
+.avatar {
+	height: 40px;
+	width: 40px;
+	padding-right: 9px;
+	padding-top: 5px;
+	background-color: #FFFFFF;
+	color: #333C4D
+	border-radius: 50%;
+}
+
+/*section*/
+.container {
+	margin: 60px auto;
+	max-width: 1000px;
+	min-width: 600px;
+}
+
+.container > header {
+	align-items: center;
+	background:
+		url('http://folkartcarsi.com/img/4.jpg')
+		no-repeat 50% 50%;
+	background-size: 100%;
+	display: flex;
+	height: 250px;
+}
+
+.container > header p {
+	font-size: 2em;
+	font-weight: 600;
+	margin-left: 210px;
+	border-left: 1px solid #FFFFFF;
+	padding-left: 8px;
+}
+
+.container > header span {
+	color: #FBAF41;
+}
+
+.main-section {
+	background-color: #F3BB43;
+}
+
+aside {
+	float: left;
+	width: 180px
+}
+
+.item-list {
+	margin-left: 180px;
+	background-color: #F2EBD9;
+	color: #624630;
+}
+
+.nav-icon {
+	color: #624630;
+	padding: 18px;
+	text-align: center;
+}
+
+
+/*对于内容主题的导航栏*/
+.main-nav-btn {
+	display: block;
+	text-decoration: none; 
+	color: #FFFFFF;
+	padding: 20px;
+	border-top: 1px solid #FFFFFF;
+	text-align: left;
+}
+
+.main-nav-btn i {
+	width: 20px;
+}
+
+
+.main-nav-btn:hover{
+	/*rgba控制颜色，后面控制透明度*/
+	background: rgba(255, 255, 255, 0.8);
+	color: #624630;
+}
+
+.active {
+	background-color: 
+	color: #624630;
+
+}
+
+/*item */
+.item {
+	align-items: center;
+	border-bottom: 1px solid #FFFFFF; /* 在每一段下面加一个线 */
+	display: flex;
+	/*margin: 10px;*/
+	padding: 15px;
+	transition: background-color 100ms linear;
+}
+
+.item:last-child {
+	border: none;
+}
+
+
+
+.item img {
+	border: 1px solid #FFFFFF;
+	height: 80px;
+	width: 80px;
+}
+
+.item:hover {
+	background: rgba(255, 255, 255, 0.8);
+	transition: background-color 100ms linear; /*对背景色进行延迟100ms效果*/
+}
+
+.item > div:first-of-type {
+	flex: 1;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.item-name {
+	color: #624630;
+	font-weight: 500;
+	text-decoration: none;
+}
+
+.item-name:hover {
+	text-decoration: underline;
+}
+
+.item-address {
+	line-height: 20px;
+	padding-right: 20px;
+	text-align: right;
+}
+
+
+
+.stars {
+	align-items: center;
+	display: flex;
+	padding-top: 10px;
+}
+
+.fav-link {
+	border-left: 1px solid #FFFFFF;
+	cursor: pointer;
+	line-height: 60px;
+	text-align: center;
+	width: 60px;
+}
+
+.fav-link:hover {
+	color: #F13F3F;
+}
+
+
+
+
+/*footer section */
+
+footer {
+	background: #434343;
+	font-size: 0.8em;
+	height: 200px;
+	position: relative;
+}
+
+footer p {
+	text-align: center;
+}
+
+footer p.title {
+	font-size: 1.2em;
+	padding: 15px;
+}
+
+footer ul {
+	align-items: center;
+	display: flex;
+	padding: 20px;
+}
+
+footer ul li {
+	flex: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
