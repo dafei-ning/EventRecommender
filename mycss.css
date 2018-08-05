@@ -66,10 +66,11 @@ ul {
 .avatar {
 	height: 40px;
 	width: 40px;
-	padding-right: 9px;
+	padding-left: 9px;
 	padding-top: 5px;
 	background-color: #FFFFFF;
-	color: #333C4D
+	/*margin-right: 20px;*/
+	color: #333C4D;
 	border-radius: 50%;
 }
 
@@ -152,6 +153,7 @@ aside {
 }
 
 /*item */
+
 .item {
 	align-items: center;
 	border-bottom: 1px solid #FFFFFF; /* 在每一段下面加一个线 */
