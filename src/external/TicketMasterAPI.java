@@ -141,7 +141,7 @@ public class TicketMasterAPI {
 			if(!embedded.isNull(VENUES)) {
 				JSONArray venues = embedded.getJSONArray(VENUES);
 				
-				for (int i = 0; i< venues.length(); i++) {
+				for (int i = 0; i< venues.length(); ++i) {
 					JSONObject venue = venues.getJSONObject(i);
 					StringBuilder sBuilder = new StringBuilder();
 					
@@ -167,7 +167,9 @@ public class TicketMasterAPI {
 						}
 					}
 					String addr = sBuilder.toString();
-					if(addr.length() > 0) {
+					
+					//if(addr.length() > 0) {
+					if(!addr.equals("")) {
 						return addr;
 					}
 				}
@@ -186,16 +188,13 @@ public class TicketMasterAPI {
 				JSONObject image = images.getJSONObject(i);
 				StringBuilder sBuilder = new StringBuilder();
 				if (!image.isNull(URL_STR)) {
-					sBuilder.append(image.getString(URL_STR));
-				}
-				String sbb = sBuilder.toString();
-				if(sbb.length() > 0) {
-					return sbb;
+					return image.getString(URL_STR);
 				}
 			}
 		}		
 		return "";
 	}
+
 	
 	// {"classifications" : [{"segment": {"name": "music"}}, ...]}
 	// classification 里面只找segment，segment里面只找name
@@ -276,14 +275,12 @@ public class TicketMasterAPI {
 	public static void main(String[] args) {
 		TicketMasterAPI tmApi = new TicketMasterAPI();
 		// Mountain View, CA
-		// tmApi.queryAPI(37.38, -122.08);
+		 tmApi.queryAPI(37.38, -122.08);
 		// London, UK
 		// tmApi.queryAPI(51.503364, -0.12);
 		// Houston, TX
-		tmApi.queryAPI(51.503364, -0.12);
+		//tmApi.queryAPI(51.503364, -0.12);
 	}
-
-
 
 }
 
