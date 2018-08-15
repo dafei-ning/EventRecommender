@@ -13,10 +13,10 @@
 		initGeoLocation();
 	}
 	
-//	4
 	function initGeoLocation() {
 		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(onPositionUpdated,
+			// 获取地址成功或者失败分别对应onPositionUpdated, onLoadPositionFailed
+			navigator.geolocation.getCurrentPosition(onPositionUpdated, 
 					onLoadPositionFailed, {
 						maximumAge : 60000
 					});
@@ -49,19 +49,21 @@
 
 
 
-//  8
+    // 获取地址成功以后，调用下面的函数
 	function onPositionUpdated(position) {
 		lat = position.coords.latitude;
 		lng = position.coords.longitude;
-//		console.log('lat -- ' + lat);
-//		console.log('lon -- ' + lng);
+		// console.log('lat -- ' + lat);
+		// console.log('lon -- ' + lng);
 		loadNearbyItems();
 	}
 
-
-	function onLoadPositionFailed(){
-		console.log('location error');
+    // // 获取地址失败，调用下面的函数
+	function onLoadPositionFailed() {
+		console.warn('navigator.geolocation is not available');
+		getLocationFromIP();
 	}
+
 
 	function loadNearbyItems() {
 		console.log('loading nearby items');
@@ -150,7 +152,7 @@
 
 		// category
 		var category = document.createElement('p');
-		category.setAttribute('class', item-category);
+		category.setAttribute('class', 'item-category');
 		category.innerHTML = 'Category: ' + item.categories.join(', ');
 		section.appendChild(category);
 
@@ -158,7 +160,7 @@
 
 		// address
 		var address = document.createElement('p');
-		category.setAttribute('class', item-address);
+		category.setAttribute('class', 'item-address');
 		address.innerHTML = item.address.replace(/,/g, '<br/>').replace(/\"/g,
 		'');
 		li.appendChild(address);
@@ -193,10 +195,6 @@
 		btn.className += ' active';
 	}
 	
-	function onLoadPositionFailed() {
-		console.warn('navigator.geolocation is not available');
-		getLocationFromIP();
-	}
 	
 	function getLocationFromIP() {
 		// Get location from http://ipinfo.io/json
@@ -231,11 +229,6 @@
 			showErrorMessage("The request couldn't be completed.");
 		};
 	}
-
-
-
-
-
 
 
 })()

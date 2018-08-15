@@ -5,9 +5,12 @@
 <meta name="description" content="Item Recommendation">
 <meta name="author" content="Your Name">
 <title>Item Recommendation Final</title>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="styles/main.css">
+<link
+	href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700'
+	rel='stylesheet' type='text/css'>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="styles/main1.css">
 </head>
 <body>
 	<header class="top-header">
@@ -26,6 +29,14 @@
 		</header>
 
 		<section class="main-section">
+			<div id="login-form">
+				<label for="username">Username:</label> <input id="username"
+					type="text"> <label for="password">Password:</label> <input
+					id="password" type="password">
+				<button id="login-btn">Login</button>
+				<p id="login-error"></p>
+			</div>
+
 			<aside id="item-nav">
 				<div class="nav-icon">
 					<i class="fa fa-sitemap fa-2x"></i>
@@ -70,24 +81,25 @@
 				<p>
 					<i class="fa fa-map-o fa-2x"></i>
 				</p>
-				<p>LaiOffer office, CA</p>
+				<p>location</p>
 			</li>
 			<li>
 				<p>
 					<i class="fa fa-envelope-o fa-2x"></i>
 				</p>
-				<p>info@laioffer.com</p>
+				<p>email</p>
 			</li>
 			<li>
 				<p>
 					<i class="fa fa-phone fa-2x"></i>
 				</p>
-				<p>+1 800 123 456</p>
+				<p>phone</p>
 			</li>
 		</ul>
 	</footer>
 
 	<script src="https://rawgit.com/emn178/js-md5/master/build/md5.min.js"></script>
-	<script src="scripts/main.js"></script>
+	<!-- <script src="scripts/main.js"></script> -->
+	<script src="scripts/main2.js"></script>
 </body>
 </html>
