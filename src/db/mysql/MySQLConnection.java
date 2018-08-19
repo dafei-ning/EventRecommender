@@ -2,16 +2,20 @@ package db.mysql;
 
 import db.mysql.MySQLConnection;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import db.DBConnection;
 import entity.Item;
+import entity.Item.ItemBuilder;
+
 import external.TicketMasterAPI;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
@@ -66,38 +70,102 @@ public class MySQLConnection implements DBConnection {
 			System.err.println("DB connection failed");
 			return;
 		}
-		 try {
+		try {
 	   		 String sql = "DELETE FROM history WHERE user_id = ? AND item_id = ?";
 	   		 PreparedStatement ps = conn.prepareStatement(sql);
 	   		 ps.setString(1, userId);
 	   		 for (String itemId : itemIds) {
 	   			 ps.setString(2, itemId);
 	   			 ps.execute();
-	   		 }
-	   		 
+	   		 }	   		 
 	   	 } catch (Exception e) {
 	   		 e.printStackTrace();
 	   	 }
-
-
 	}
 
 	@Override
 	public Set<String> getFavoriteItemIds(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		if (conn == null) {
+			return new HashSet<>();
+		}
+		Set<String> favoriteItemsIds = new HashSet<>();
+		
+		try {
+			String sql = "SELECT item FROM history WHERE user_id = ?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, userId);
+			ResultSet rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				String itemId = rs.getString("item_id");
+				favoriteItemsIds.add(itemId);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return favoriteItemsIds;
 	}
 
 	@Override
 	public Set<Item> getFavoriteItems(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		if (conn == null) {
+			return new HashSet<>();
+		}
+		
+		Set<Item> favoriteItems = new HashSet<>();
+		Set<String> itemIds = getFavoriteItemIds(userId);
+		
+		try {
+			String sql = "SELECT * FROM items WHERE item_id = ?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			for (String itemId : itemIds) {
+				stmt.setString(1, itemId);
+				
+				ResultSet rs = stmt.executeQuery();
+				
+				ItemBuilder builder = new ItemBuilder();
+				
+				// 虽然这里返回的就是一条数据，因为item——id就是唯一的，但这里建议写while
+				while (rs.next()) {
+					builder.setItemId(rs.getString("item_id"));
+					builder.setName(rs.getString("name"));
+					builder.setAddress(rs.getString("address"));
+					builder.setImageUrl(rs.getString("image_url"));
+					builder.setUrl(rs.getString("url"));
+					builder.setCategories(getCategories(itemId));
+					builder.setRating(rs.getDouble("rating"));
+					
+					favoriteItems.add(builder.build());
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return favoriteItems;
 	}
 
 	@Override
 	public Set<String> getCategories(String itemId) {
-		// TODO Auto-generated method stub
-		return null;
+		if (conn == null) {
+			return new HashSet<>();
+		}
+		Set<String> categories = new HashSet<>();
+		
+		try {
+			// select 只关心一个值
+			String sql = "SELECT category FROM categories WHERE item_id = ?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, itemId);
+			
+			ResultSet rs = stmt.executeQuery();			
+			while (rs.next()) {
+				String category = rs.getString("category");
+				categories.add(category);
+			}			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return categories;
 	}
 
 	@Override
@@ -144,8 +212,6 @@ public class MySQLConnection implements DBConnection {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-
 	}
 
 	@Override

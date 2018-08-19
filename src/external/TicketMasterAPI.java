@@ -57,8 +57,8 @@ public class TicketMasterAPI {
 		String geoHash = GeoHash.encodeGeohash(lat, lon, 8); // 数字就是保留的精度 precision 一般 8 就够了 
 
 		// Make URL "apikey = 12345&geopoint=abcd&keyword=music&radius=50"
-//		String query = String.format("apikey=%s&geopoint=%s&keyword=%s&radius=%s", API_KEY, geoHash, keyword, 50);
-		String query = String.format("apikey=%s&postalCode=%s&keyword=%s&radius=%d", API_KEY,"53703",keyword, 50);
+		String query = String.format("apikey=%s&geopoint=%s&keyword=%s&radius=%s", API_KEY, geoHash, keyword, 50);
+//		String query = String.format("apikey=%s&postalCode=%s&keyword=%s&radius=%d", API_KEY,"53703",keyword, 50);
 
 		try {
 			// open a HTTP connection between java app and TicketMaster based URL
