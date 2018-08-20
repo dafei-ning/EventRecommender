@@ -40,52 +40,6 @@ public class SearchItem extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-//	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-////		// TODO Auto-generated method stub		
-//		response.setContentType("application/json");
-//		PrintWriter out = response.getWriter();
-//	    if ( request.getParameter("username")!= null) {
-//	    	String username = request.getParameter("username");
-//	    	response.getWriter().append("Served at: ").append(request.getContextPath());
-//			out.println("<html><body>");
-//			out.println("<h1>Hello " + username + "</h1>");
-//			out.println("</body></html><br>");		
-//			JSONArray array = new JSONArray();
-//			JSONObject obj = new JSONObject();	
-//			try {
-//				obj.put("username", username);
-//				//array.put(new JSONObject().put("username", "abcd"));
-//				array.put(obj);
-//				array.put(obj);
-//			} catch (JSONException e) {
-//				e.printStackTrace();
-//			}
-//			out.print(obj);
-//	    }
-//		out.close();
-//	}
-    
-//    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		  double lat = Double.parseDouble(request.getParameter("lat"));
-//		  double lon = Double.parseDouble(request.getParameter("lon"));
-//		  
-//		  String keyWord = request.getParameter("term");
-//		  
-//		  TicketMasterAPI ticketMasterAPI = new TicketMasterAPI();
-//		  List<Item> items = ticketMasterAPI.search(lat, lon, keyWord);
-//		  
-//		  JSONArray array = new JSONArray();
-//		  
-//		  try {
-//			  for (Item item : items) {
-//				  JSONObject object = item.toJSONObject();
-//				  array.put(object);
-//			  }
-//		  } catch (Exception e) {
-//			  e.printStackTrace();
-//		  }
-//		  RpcHelper.writeJsonArray(response, array);
-//	}
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     		throws ServletException, IOException {
@@ -108,59 +62,7 @@ public class SearchItem extends HttpServlet {
     	} finally {
     		connection.close();
     	}
-
     }
-
-	
-//	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		  // TODO Auto-generated method stub
-//		  //response.getWriter().append("Served at: ").append(request.getContextPath());
-//		  
-//		  response.setContentType("application/json");
-//		  PrintWriter out = response.getWriter();
-//		  JSONArray array = new JSONArray();
-//
-//		  try {
-//		   array.put(new JSONObject().put("username", "abcd"));
-//		   array.put(new JSONObject().put("username", "1234"));
-//		  } catch (JSONException e) {
-//		   e.printStackTrace();
-//		  }
-//		  out.print(array);
-//		  out.close();
-//	}
-	
-	
-	
-//	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-//			throws ServletException, IOException {
-//		// allow access only if session exists
-//		HttpSession session = request.getSession(false);
-//		String userId = request.getParameter("user_id");
-//		double lat = Double.parseDouble(request.getParameter("lat"));
-//		double lon = Double.parseDouble(request.getParameter("lon"));
-//		// Term can be empty or null.
-//		String term = request.getParameter("term");
-//		List<Item> items = conn.searchItems(userId, lat, lon, term);
-//		List<JSONObject> list = new ArrayList<>();
-//
-//		Set<String> favorite = conn.getFavoriteItemIds(userId);
-//		try {
-//			for (Item item : items) {
-//				// Add a thin version of restaurant object
-//				JSONObject obj = item.toJSONObject();
-//				// Check if this is a favorite one.
-//				// This field is required by frontend to correctly display favorite items.
-//				obj.put("favorite", favorite.contains(item.getItemId()));
-//
-//				list.add(obj);
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		JSONArray array = new JSONArray(list);
-//		RpcHelper.writeJsonArray(response, array);
-//	}
 	
 
 	/**
