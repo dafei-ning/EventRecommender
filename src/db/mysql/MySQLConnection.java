@@ -234,7 +234,6 @@ public class MySQLConnection implements DBConnection {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 		return name;
 	}
 
