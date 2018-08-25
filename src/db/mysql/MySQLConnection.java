@@ -20,9 +20,7 @@ import java.sql.SQLException;
 
 
 public class MySQLConnection implements DBConnection {
-
 	private Connection conn; // 实例化conncetion
-
 	public MySQLConnection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver").getConstructor().newInstance();
@@ -50,7 +48,6 @@ public class MySQLConnection implements DBConnection {
 			System.err.println("DB connection failed");
 			return;
 		}
-
 		try {
 			String sql = "INSERT IGNORE INTO history(user_id, item_id) VALUES (?, ?)";
 			PreparedStatement ps = conn.prepareStatement(sql);

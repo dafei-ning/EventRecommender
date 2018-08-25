@@ -16,7 +16,6 @@ public class DBConnectionFactory {
 		default:
 			throw new IllegalArgumentException("Invalid db:" + db);
 		}
-
 	}
 	
 	public static DBConnection getConnection() {
