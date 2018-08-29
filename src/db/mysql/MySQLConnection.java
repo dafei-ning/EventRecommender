@@ -45,7 +45,7 @@ public class MySQLConnection implements DBConnection {
 	@Override
 	public void setFavoriteItems(String userId, List<String> itemIds) {
 		if (conn == null) {
-			System.err.println("DB connection failed");
+			System.err.println("DB connection failed when setFavoriteItems");
 			return;
 		}
 		try {
@@ -64,7 +64,7 @@ public class MySQLConnection implements DBConnection {
 	@Override
 	public void unsetFavoriteItems(String userId, List<String> itemIds) {
 		if (conn == null) {
-			System.err.println("DB connection failed");
+			System.err.println("DB connection failed when unsetFavoriteItems");
 			return;
 		}
 		try {
@@ -88,7 +88,7 @@ public class MySQLConnection implements DBConnection {
 		Set<String> favoriteItemsIds = new HashSet<>();
 		
 		try {
-			String sql = "SELECT item FROM history WHERE user_id = ?";
+			String sql = "SELECT item_id FROM history WHERE user_id = ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, userId);
 			ResultSet rs = stmt.executeQuery();
